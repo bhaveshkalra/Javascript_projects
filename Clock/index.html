@@ -1,0 +1,75 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" width="device-width" initial-scale="1.0">
+    <title>PROJECT 2-Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container row">
+        <div class="col-sm-12 text-center">
+            <h2 id="header">
+                CLOCK
+            </h2>
+        </div>
+        <div class="col-sm-12 text-center">
+            <div id="clock">
+                <div id="clockface">
+                    <div class="hand hourhand">hour</div>
+                    <div class="hand minhand">min</div>
+                    <div class="hand secondhand">sec</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var sec = document.querySelector('.secondhand');
+        var min = document.querySelector('.minhand');
+        var hour = document.querySelector('.hourhand');
+
+        setInterval(setTime, 1000);
+
+
+        function setTime() {
+            var date = new Date();
+
+            var seconds = date.getSeconds();
+            var secdeg = ((seconds / 60) * 360) + 90;
+            sec.style.transform = `rotateZ(${secdeg}deg)`;
+            sec.style.height = "4px";
+            sec.style.backgroundColor = "green";
+            sec.style.fontSize = "25px";
+            sec.style.fontWeight = "bold";
+            sec.style.color = "green";
+
+
+            var minutes = date.getMinutes();
+            var mindeg = ((minutes / 60) * 360) + ((seconds / 60) * 6) + 90;
+            min.style.transform = `rotate(${mindeg}deg)`;
+            min.style.height = "6px";
+            min.style.backgroundColor = "blue";
+            min.style.fontSize = "25px";
+            min.style.fontWeight = "bold";
+            min.style.color = "blue";
+
+            var hours = date.getHours();
+            var hourdeg = ((hours / 12) * 360) + ((minutes / 60) * 30) + 90;
+            hour.style.transform = `rotate(${hourdeg}deg)`;
+            hour.length = "10px";
+            hour.style.height = "8px";
+            hour.style.backgroundColor = "orange";
+            hour.style.fontSize = "25px";
+            hour.style.fontWeight = "bold";
+            hour.style.color = "orange";
+
+        }
+
+        setTime();
+    </script>
+</body>
+
+</html>
